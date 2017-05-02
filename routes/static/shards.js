@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var https = require('https');
-var env = require('../../.env');
 
 /**
  * `/shards` route responsible for returning all shard data for every region.
@@ -12,9 +11,9 @@ var env = require('../../.env');
  * @return {Array.Object}  List of all shard data
  */
 router.get('/', function(req, res, next) {
-  let options = {
+  const options = {
     hostname: 'na.api.riotgames.com',
-    path: `/lol/status/v1/shards?api_key=${env.apiKey}`,
+    path: `/lol/status/v1/shards?api_key=${req.apiKey}`,
     method: 'GET'
   };
 
@@ -41,9 +40,9 @@ router.get('/', function(req, res, next) {
  * @return {Array.Object}  Array of objects containing region name and tag pairs
  */
 router.get('/regions', function(req, res, next) {
-  let options = {
+  const options = {
     hostname: 'na.api.riotgames.com',
-    path: `/lol/status/v1/shards?api_key=${env.apiKey}`,
+    path: `/lol/status/v1/shards?api_key=${req.apiKey}`,
     method: 'GET'
   };
 
